@@ -1,32 +1,51 @@
+
+
 package org.launchcode;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Menu {
-    private Date lastUpdated;
-    private ArrayList<MenuItem> items;
+    private ArrayList<MenuItem> menuItems;
+    private Date lastMenuUpdate;
 
-    public Menu(Date d, ArrayList<MenuItem> i) {
-        this.lastUpdated = d;
-        this.items = i;
+    public Menu(ArrayList<MenuItem> menuItems, Date lastMenuUpdate) {
+        this.menuItems = menuItems;
+        this.lastMenuUpdate = lastMenuUpdate;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public ArrayList<MenuItem> getMenuItems() {
+        return menuItems;
     }
 
-    public void setItems(ArrayList<MenuItem> items) {
-        this.items = items;
+    public void setMenuItems(ArrayList<MenuItem> menuItems) {
+        this.menuItems = menuItems;
     }
 
-    public Date getLastUpdated() {
-        return lastUpdated;
+    public Date getLastMenuUpdate() {
+        return lastMenuUpdate;
     }
 
-    public ArrayList<MenuItem> getItems() {
-        return items;
+    public void setLastMenuUpdate(Date lastMenuUpdate) {
+        this.lastMenuUpdate = lastMenuUpdate;
     }
+
+    public void addItem(MenuItem item) {
+        this.menuItems.add(item);
+    }
+    public void removeItem(MenuItem item) {
+        this.menuItems.remove(item);
+    }
+public void printOneItem(MenuItem item) {
+    System.out.println(item.toString());
 }
 
+    public void printFullMenu () {
+        for (MenuItem item : menuItems) {
+            System.out.println(item.toString());
+        }
+    }
+
+
+    }
 
