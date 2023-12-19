@@ -27,22 +27,31 @@ class BalancedBracketsTest {
     }
 
     @Test
-    public void testOnlyOneLeftBracket() {
+    public void testOnlyOneOpenBracket() {
         assertFalse(BalancedBrackets.hasBalancedBrackets("["));
     }
 
     @Test
-    public void testOnlyOneRightBracket() {
+    public void testOnlyOneCloseBracket() {
         assertFalse(BalancedBrackets.hasBalancedBrackets("]"));
     }
 
     @Test
-    public void testOneLeftBracketWithOtherChars() {
+    public void testOneOpenBracketWithOtherChars() {
         assertFalse(BalancedBrackets.hasBalancedBrackets("Launch["));
     }
 
     @Test
-    public void testOneRightBracketWithOtherChars() {
+    public void testOneCloseBracketWithOtherChars() {
         assertFalse(BalancedBrackets.hasBalancedBrackets("Launch]"));
     }
+    @Test
+    public void testUnbalancedThreeBrackets() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("[Launc]["));
+    }
+    @Test
+    public void testMultipleBalancedBrackets() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[Launch][]"));
+    }
+
 }
