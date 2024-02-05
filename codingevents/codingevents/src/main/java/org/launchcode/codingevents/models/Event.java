@@ -1,41 +1,85 @@
 package org.launchcode.codingevents.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
-
+@Entity
 public class Event {
-
-    private String name;
-    private String description;
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
+    @NotBlank(message = "Name is required")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    private String name;
 
-    public Event(String name, String description) {
+    @Size(max = 500, message = "Description too long!")
+    private String description;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email. Try again.")
+    private String contactEmail;
+
+   private String type;
+
+    public Event(String name, String description, String contactEmail, String type) {
         this.name = name;
         this.description = description;
-        this.id = nextId;
-        nextId++;
+        this.contactEmail = contactEmail;
+        this.type = type;
 
     }
 
-    public int getId() {
-        return id;
+    public Event() {
+    }
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
+
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getContactEmail() {
+        return contactEmail;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override
@@ -49,11 +93,6 @@ public class Event {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }
 
